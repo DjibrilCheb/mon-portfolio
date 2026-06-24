@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Djibril Cheblal | Portfolio BUT Informatique</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Glow Elements -->
+  <div class="glow-bg glow-primary"></div>
+  <div class="glow-bg glow-secondary"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo">
+        <span class="logo-name" id="profile-logo-name">Djibril Cheblal</span>
+        <span class="logo-badge">BUT Info S4</span>
+      </div>
+      <nav class="main-nav">
+        <button class="nav-link active" data-target="accueil">Accueil</button>
+        <button class="nav-link" data-target="presentation">Présentation</button>
+        <button class="nav-link" data-target="sae">Bilan SAÉ</button>
+        <button class="nav-link" data-target="stages">Stages</button>
+        <button class="nav-link" data-target="objectifs">Objectifs</button>
+        <button class="nav-link" data-target="cv">CV & Contact</button>
+      </nav>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer de thème">
+          <!-- Moon Icon (Dark Mode) -->
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <!-- Sun Icon (Light Mode) -->
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-main">
+    <div class="content-wrapper">
+      
+      <!-- Section: Accueil -->
+      <section id="accueil" class="page-section active">
+        <div class="hero-container">
+          <h1 class="hero-title editable" id="accueil-bienvenue" data-key="accueil.bienvenue">Bienvenue dans mon portfolio</h1>
+          <p class="hero-subtitle editable" id="accueil-soustitre" data-key="accueil.soustitre">Découvrez mon parcours en BUT Informatique, mes compétences à travers les SAÉ, mon expérience de stage et mes objectifs professionnels.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="btn-discover" data-target="presentation">
+              <span id="accueil-boutonTexte" class="editable" data-key="accueil.boutonTexte">Découvrir mon profil</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Présentation -->
+      <section id="presentation" class="page-section">
+        <div class="section-header">
+          <span class="section-tag">Qui suis-je ?</span>
+          <h2 class="section-title">Présentation Personnelle</h2>
+        </div>
+        <div class="grid grid-2-col gap-xl">
+          <div class="card glass-card span-2-col-desktop">
+            <div class="profile-card-header">
+              <img id="profile-avatar" class="profile-avatar-img" src="" alt="Avatar de Djibril">
+              <div class="profile-card-title-group">
+                <h3>Mon Parcours</h3>
+                <p id="pres-introduction" class="lead-text editable" data-key="presentation.introduction">Je suis Djibril Cheblal...</p>
+              </div>
+            </div>
+            <hr class="card-divider">
+            <h4>Logique de mon parcours & Choix d'orientation</h4>
+            <p id="pres-parcoursLogique" class="editable text-block" data-key="presentation.parcoursLogique">Mon parcours a commencé par...</p>
+          </div>
+
+          <div class="card glass-card">
+            <h3>Mon Projet Professionnel</h3>
+            <p id="pres-projet-desc" class="editable mb-lg text-muted" data-key="presentation.projetPro.description">Mon projet professionnel s'articule autour des technologies...</p>
+            <div class="meta-info">
+              <div class="meta-item">
+                <span class="meta-label">Secteur d'activité ciblé :</span>
+                <span id="pres-projet-secteur" class="meta-value editable" data-key="presentation.projetPro.secteur">Développement Web & Logiciel / Ingénierie DevOps</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Métier visé :</span>
+                <span id="pres-projet-metier" class="meta-value editable" data-key="presentation.projetPro.metier">Ingénieur d'études et développement</span>
+              </div>
+            </div>
+            <h4 class="mt-lg">Technologies privilégiées :</h4>
+            <ul id="pres-projet-technologies" class="tag-list editable-list" data-key="presentation.projetPro.technologies" data-type="tags">
+              <!-- Dynamically populated tags -->
+            </ul>
+          </div>
+
+          <div class="card glass-card">
+            <h3>Qualités Personnelles & Illustrations</h3>
+            <div id="pres-qualites-container" class="accordion-container">
+              <!-- Dynamically populated accordion card items -->
+            </div>
+          </div>
+
+          <div class="card glass-card span-2-col-desktop accent-border">
+            <h3>Bilan & Évolution (Du BUT 1 au BUT 2)</h3>
+            <p id="pres-conclusion" class="editable text-block" data-key="presentation.conclusionEvolution">Au cours de ces deux années de BUT (de 2024 à 2026)...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Bilan SAÉ -->
+      <section id="sae" class="page-section">
+        <div class="section-header">
+          <span class="section-tag">Projets Universitaires</span>
+          <h2 class="section-title">Bilan des compétences à partir des SAÉ</h2>
+          <p class="section-description">Présentation synthétique et critique des travaux académiques significatifs et des apprentissages tirés au cours du BUT 2.</p>
+        </div>
+        
+        <div class="sae-tabs">
+          <button class="sae-tab-btn active" data-sae="S3">SAÉ Semestre 3 (S3)</button>
+          <button class="sae-tab-btn" data-sae="S4">SAÉ Semestre 4 (S4)</button>
+        </div>
+
+        <div id="sae-details-container">
+          <!-- Dynamically populated based on active SAE tab -->
+        </div>
+      </section>
+
+      <!-- Section: Stages -->
+      <section id="stages" class="page-section">
+        <div class="section-header">
+          <span class="section-tag">Expérience Professionnelle</span>
+          <h2 class="section-title">Bilan du Stage de BUT 2</h2>
+        </div>
+        <div class="grid grid-2-col gap-xl">
+          <div class="card glass-card span-2-col-desktop">
+            <div class="stage-badge-container">
+              <span id="stage-poste" class="stage-title-main editable" data-key="stage.poste">Technicien Support Réseaux (Stagiaire)</span>
+              <span class="stage-meta-details">
+                <span id="stage-entreprise" class="editable font-weight-bold" data-key="stage.entreprise">Lycée Théodore Monod à Noisy-le-Sec</span> &bull; 
+                <span id="stage-duree" class="editable text-muted" data-key="stage.duree">8 semaines (du 26 janvier au 20 mars 2026)</span>
+              </span>
+            </div>
+            
+            <h4 class="mt-lg">Description & Missions :</h4>
+            <p id="stage-missions" class="editable text-block" data-key="stage.missions">Donnez ici un aperçu synthétique des missions confiées...</p>
+            
+            <h4 class="mt-lg">Découverte du monde professionnel :</h4>
+            <p id="stage-decouverte" class="editable text-block" data-key="stage.decouverteMondePro">J'ai découvert le fonctionnement d'une équipe technique en entreprise...</p>
+          </div>
+
+          <div class="card glass-card span-2-col-desktop accent-border">
+            <h3>Synthèse de deux compétences du BUT mobilisées</h3>
+            
+            <div class="grid grid-2-col gap-lg mt-md">
+              <div class="competence-box">
+                <h4 id="stage-comp1-nom" class="editable text-accent" data-key="stage.competence1.nom">Administrer les réseaux informatiques et maintenir l'infrastructure (BUT Informatique)</h4>
+                <h5 class="mt-md text-muted">Synthèse de l'expérience :</h5>
+                <p id="stage-comp1-synthese" class="editable mt-xs text-sm" data-key="stage.competence1.synthese">Chargé du maintien en conditions opérationnelles de l'infrastructure informatique de l'établissement...</p>
+                <h5 class="mt-md text-muted">Preuves apportées :</h5>
+                <p id="stage-comp1-preuves" class="editable mt-xs text-sm" data-key="stage.competence1.preuves">Diagnostic de pannes, recâblage de switchs, résolution de boucle réseau...</p>
+              </div>
+
+              <div class="competence-box">
+                <h4 id="stage-comp2-nom" class="editable text-accent" data-key="stage.competence2.nom">Collaborer et communiquer au sein d'une équipe informatique exigeante</h4>
+                <h5 class="mt-md text-muted">Synthèse de l'expérience :</h5>
+                <p id="stage-comp2-synthese" class="editable mt-xs text-sm" data-key="stage.competence2.synthese">Gestion du support utilisateur, Active Directory et gestion d'urgences au téléphone...</p>
+                <h5 class="mt-md text-muted">Preuves apportées :</h5>
+                <p id="stage-comp2-preuves" class="editable mt-xs text-sm" data-key="stage.competence2.preuves">Organisation en binôme avec Anas, tickets de support résolus...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Objectifs -->
+      <section id="objectifs" class="page-section">
+        <div class="section-header">
+          <span class="section-tag">Perspectives d'avenir</span>
+          <h2 class="section-title">Objectifs Professionnels</h2>
+        </div>
+        <div class="timeline">
+          <!-- Court Terme -->
+          <div class="timeline-item">
+            <div class="timeline-dot dot-primary"></div>
+            <div class="timeline-content card glass-card">
+              <span class="timeline-time">À Court Terme &bull; BUT 3 / Alternance</span>
+              <h3>Recherche d'alternance & Stage</h3>
+              <p id="obj-courtTerme" class="editable text-block" data-key="objectifs.courtTerme">Recherche d'un contrat d'alternance ou d'un stage pour le BUT 3...</p>
+            </div>
+          </div>
+          <!-- Moyen Terme -->
+          <div class="timeline-item">
+            <div class="timeline-dot dot-secondary"></div>
+            <div class="timeline-content card glass-card">
+              <span class="timeline-time">À Moyen Terme &bull; Post-BUT (1-3 ans)</span>
+              <h3>Poursuite d'études & Premier emploi</h3>
+              <p id="obj-moyenTerme" class="editable text-block" data-key="objectifs.moyenTerme">Poursuite d'études post-BUT...</p>
+            </div>
+          </div>
+          <!-- Long Terme -->
+          <div class="timeline-item">
+            <div class="timeline-dot dot-accent"></div>
+            <div class="timeline-content card glass-card">
+              <span class="timeline-time">À Long Terme &bull; 10-15 ans</span>
+              <h3>Vision de carrière</h3>
+              <p id="obj-longTerme" class="editable text-block" data-key="objectifs.longTerme">Dans 10 ou 15 ans, je me projette en tant que Lead Developer...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: CV & Contact -->
+      <section id="cv" class="page-section">
+        <div class="section-header">
+          <span class="section-tag">Me contacter</span>
+          <h2 class="section-title">CV & Informations de Contact</h2>
+        </div>
+        <div class="grid grid-2-col gap-xl">
+          <div class="card glass-card flex-col-center">
+            <h3>Mon Curriculum Vitae</h3>
+            <div class="cv-preview-placeholder" style="border: none; background: none;">
+              <img src="cv.jpg" alt="Aperçu du CV" style="width:100%; height:100%; object-fit:contain; border-radius:8px; cursor:pointer; transition: transform 0.3s ease;" class="cv-preview-img" onclick="window.open('cv.pdf', '_blank')">
+            </div>
+            <div class="input-group mt-md w-full">
+              <label for="cv-url-input" class="text-xs text-muted mb-xs block">Lien du fichier CV :</label>
+              <input type="text" id="cv-url-input" class="text-input" placeholder="ex: assets/mon_cv.pdf" value="cv.pdf">
+            </div>
+            <a id="download-cv-btn" href="cv.pdf" class="btn btn-secondary mt-md w-full text-center-btn" target="_blank">
+              <span>Visualiser le CV</span>
+            </a>
+          </div>
+
+          <div class="card glass-card">
+            <h3>Informations de Contact</h3>
+            <div class="contact-list">
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="contact-details">
+                  <span class="contact-label">Email professionnel :</span>
+                  <a href="mailto:djibril.cheb@gmail.com" id="profile-email" class="contact-value editable" data-key="profil.email">djibril.cheb@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </div>
+                <div class="contact-details">
+                  <span class="contact-label">GitHub :</span>
+                  <a href="https://github.com/djibcheb11" id="profile-github" class="contact-value editable" data-key="profil.github" target="_blank">https://github.com/djibcheb11</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </div>
+                <div class="contact-details">
+                  <span class="contact-label">LinkedIn :</span>
+                  <a href="https://linkedin.com/in/djibril-cheblal" id="profile-linkedin" class="contact-value editable" data-key="profil.linkedin" target="_blank">https://linkedin.com/in/djibril-cheblal</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span id="footer-logo-name">Djibril Cheblal</span>
+        <span class="copyright">&copy; 2026. Tous droits réservés.</span>
+      </div>
+      <div class="footer-links">
+        <span class="footer-tag">Portfolio S4 BUT Informatique</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Editor Control Panel -->
+  <div class="editor-panel-wrapper" id="editor-control-panel">
+    <button class="editor-toggle-btn" id="editor-toggle-trigger" aria-label="Ouvrir le panneau d'édition">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-edit-pencil"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
+      <span class="toggle-btn-text">Éditer le site</span>
+    </button>
+    
+    <div class="editor-settings-box">
+      <h4>Panneau d'Édition Directe</h4>
+      <p class="text-xs text-muted mb-sm">Activez le mode édition pour modifier n'importe quel texte ou liste directement à l'écran.</p>
+      
+      <div class="settings-switch-group mb-md">
+        <span class="switch-label">Mode Édition Activé</span>
+        <label class="switch-control">
+          <input type="checkbox" id="edit-mode-checkbox">
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+
+      <div class="editor-actions-vertical">
+        <button id="export-json-btn" class="btn btn-primary btn-sm btn-full-width disabled" disabled>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Exporter data.js</span>
+        </button>
+        <button id="reset-data-btn" class="btn btn-danger btn-sm btn-full-width">
+          Réinitialiser le texte
+        </button>
+      </div>
+      
+      <div class="editor-status-msg mt-sm text-xs" id="editor-status-text">
+        Mode lecture seule actif.
+      </div>
+    </div>
+  </div>
+
+  <!-- Database and scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
