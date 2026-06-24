@@ -12,7 +12,7 @@ const portfolioData = {
     github: "https://github.com/djibcheb11",
     linkedin: "https://linkedin.com/in/djibril-cheblal",
     cvUrl: "cv.pdf", // Modifié pour pointer vers le CV Blue Simple
-    avatarUrl: "file:///C:/Users/fati1/.gemini/antigravity/brain/f411145d-a793-45a4-96fa-861774bf0671/profile_avatar_1782246553817.png"
+    avatarUrl: "avatar.png"
   },
   accueil: {
     bienvenue: "Bienvenue dans mon portfolio",
