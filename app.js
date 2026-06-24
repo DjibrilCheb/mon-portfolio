@@ -5,22 +5,7 @@ let currentData = {};
 const storageKey = 'portfolio_djibril_data';
 
 function loadData() {
-  const savedData = localStorage.getItem(storageKey);
-  if (savedData) {
-    try {
-      currentData = JSON.parse(savedData);
-    } catch (e) {
-      console.error("Erreur lors de la lecture des données sauvegardées, chargement des données par défaut", e);
-      currentData = { ...portfolioData };
-    }
-  } else {
-    currentData = { ...portfolioData };
-  }
-}
-
-// Sauvegarde temporaire dans le localStorage
-function saveToLocalStorage() {
-  localStorage.setItem(storageKey, JSON.stringify(currentData));
+  currentData = { ...portfolioData };
 }
 
 // 2. Rendu de l'application
@@ -479,140 +464,6 @@ function setupThemeToggle() {
   });
 }
 
-// 6. Gestion du Mode Édition
-function setupEditMode() {
-  const editCheckbox = document.getElementById('edit-mode-checkbox');
-  const exportBtn = document.getElementById('export-json-btn');
-  const resetBtn = document.getElementById('reset-data-btn');
-  const statusText = document.getElementById('editor-status-text');
-  
-  // Bascule du mode édition
-  editCheckbox.addEventListener('change', () => {
-    const isEditing = editCheckbox.checked;
-    
-    if (isEditing) {
-      document.body.classList.add('edit-mode-active');
-      statusText.innerHTML = '<span class="status-active">Mode modification actif !</span>';
-      exportBtn.classList.remove('disabled');
-      exportBtn.removeAttribute('disabled');
-      
-      // Activer contenteditable sur les éléments modifiables
-      document.querySelectorAll('.editable').forEach(elem => {
-        elem.contentEditable = true;
-      });
-      
-    } else {
-      document.body.classList.remove('edit-mode-active');
-      statusText.textContent = 'Mode lecture seule actif.';
-      exportBtn.classList.add('disabled');
-      exportBtn.setAttribute('disabled', 'true');
-      
-      // Désactiver contenteditable
-      document.querySelectorAll('.editable').forEach(elem => {
-        elem.contentEditable = false;
-      });
-    }
-    
-    // Re-rendre pour afficher/masquer les contrôles d'ajout/suppression
-    renderApp();
-  });
-
-  // Écouteur d'événement sur tous les éléments éditables statiques pour la mise à jour des données
-  document.addEventListener('blur', (e) => {
-    if (!document.body.classList.contains('edit-mode-active')) return;
-    
-    const target = e.target;
-    if (target.classList.contains('editable') && target.hasAttribute('data-key')) {
-      const keyPath = target.getAttribute('data-key');
-      const val = target.textContent.trim();
-      
-      // Mettre à jour l'objet de données imbriqué dynamique
-      updateDataValue(currentData, keyPath, val);
-      saveToLocalStorage();
-    }
-  }, true); // Use capture phase to catch blur events
-
-  // Sauvegarde spéciale pour l'URL du CV en direct
-  const cvInput = document.getElementById('cv-url-input');
-  cvInput.addEventListener('input', () => {
-    currentData.profil.cvUrl = cvInput.value.trim();
-    saveToLocalStorage();
-    document.getElementById('download-cv-btn').href = currentData.profil.cvUrl;
-  });
-
-  // Action: Exporter le fichier data.js
-  exportBtn.addEventListener('click', () => {
-    if (exportBtn.hasAttribute('disabled')) return;
-    
-    // Générer le code source final JavaScript avec les données insérées
-    const fileContent = `// Les données du portfolio de Djibril Cheblal
-// Ce fichier sert de base de données. En Mode Édition, vous pouvez modifier ces textes
-// directement sur le site et exporter le fichier mis à jour.
-
-const portfolioData = ${JSON.stringify(currentData, null, 2)};
-`;
-    
-    // Créer un fichier de téléchargement dynamique
-    const blob = new Blob([fileContent], { type: 'application/javascript;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'data.js';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  });
-
-  // Action: Réinitialiser les données
-  resetBtn.addEventListener('click', () => {
-    if (confirm("Voulez-vous vraiment réinitialiser toutes les données à leur état d'origine ? Vos modifications locales seront perdues.")) {
-      localStorage.removeItem(storageKey);
-      loadData();
-      renderApp();
-      // Désactiver le checkbox d'édition pour plus de sécurité
-      editCheckbox.checked = false;
-      document.body.classList.remove('edit-mode-active');
-      statusText.textContent = 'Mode lecture seule actif.';
-      exportBtn.classList.add('disabled');
-      exportBtn.setAttribute('disabled', 'true');
-      alert("Données réinitialisées avec succès !");
-      window.location.reload();
-    }
-  });
-
-  // Configurer le panneau de contrôle d'édition flottant rétractable
-  const panel = document.getElementById('editor-control-panel');
-  const trigger = document.getElementById('editor-toggle-trigger');
-  
-  trigger.addEventListener('click', () => {
-    panel.classList.toggle('open');
-  });
-
-  // Fermer le panneau si on clique à l'extérieur
-  document.addEventListener('click', (e) => {
-    if (!panel.contains(e.target) && panel.classList.contains('open')) {
-      panel.classList.remove('open');
-    }
-  });
-}
-
-// Fonction utilitaire pour mettre à jour des valeurs dans un objet imbriqué à partir d'un chemin de clé sous forme de chaîne (ex: "presentation.projetPro.secteur")
-function updateDataValue(obj, keyPath, val) {
-  const parts = keyPath.split('.');
-  let current = obj;
-  
-  for (let i = 0; i < parts.length - 1; i++) {
-    const part = parts[i];
-    if (!current[part]) {
-      current[part] = {};
-    }
-    current = current[part];
-  }
-  
-  current[parts[parts.length - 1]] = val;
-}
 
 // 7. Initialisation des événements sur les onglets SAE
 function setupSaeTabs() {
@@ -633,6 +484,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderApp();
   setupNavigation();
   setupThemeToggle();
-  setupEditMode();
   setupSaeTabs();
 });
