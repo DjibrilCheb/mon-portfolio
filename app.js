@@ -157,117 +157,30 @@ function renderTechTags() {
   container.appendChild(addLi);
 }
 
-// Rendu de l'accordéon des qualités
+// Rendu de la présentation textuelle complète des qualités
 function renderQualities() {
   const container = document.getElementById('pres-qualites-container');
   container.innerHTML = '';
 
-  currentData.presentation.qualites.forEach((qualite, index) => {
-    const itemDiv = document.createElement('div');
-    itemDiv.className = 'accordion-item';
-    if (index === 0) itemDiv.classList.add('active'); // Ouvrir la première par défaut
+  currentData.presentation.qualites.forEach((qualite) => {
+    const qualBlock = document.createElement('div');
+    qualBlock.className = 'quality-block mb-lg';
 
-    // Header
-    const headerDiv = document.createElement('div');
-    headerDiv.className = 'accordion-header';
-    
-    const titleSpan = document.createElement('span');
-    titleSpan.className = 'quality-name-text';
-    titleSpan.textContent = qualite.nom;
-    headerDiv.appendChild(titleSpan);
+    const titleH4 = document.createElement('h4');
+    titleH4.className = 'text-accent font-weight-bold mb-xs';
+    titleH4.textContent = qualite.nom;
+    qualBlock.appendChild(titleH4);
 
-    // Edit controls for quality name
-    const editNameBtn = document.createElement('button');
-    editNameBtn.className = 'btn-edit-inline edit-only';
-    editNameBtn.innerHTML = '✏️';
-    editNameBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const newName = prompt("Modifier le nom de la qualité :", qualite.nom);
-      if (newName && newName.trim() !== '') {
-        qualite.nom = newName.trim();
-        saveToLocalStorage();
-        renderQualities();
-      }
-    });
-    headerDiv.appendChild(editNameBtn);
-
-    const iconSvg = document.createElement('div');
-    iconSvg.className = 'accordion-icon-wrapper';
-    iconSvg.innerHTML = `<svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
-    headerDiv.appendChild(iconSvg);
-
-    headerDiv.addEventListener('click', () => {
-      // Toggle active status
-      const isActive = itemDiv.classList.contains('active');
-      document.querySelectorAll('.accordion-item').forEach(item => item.classList.remove('active'));
-      if (!isActive) {
-        itemDiv.classList.add('active');
-      }
-    });
-
-    itemDiv.appendChild(headerDiv);
-
-    // Content
-    const contentDiv = document.createElement('div');
-    contentDiv.className = 'accordion-content';
-    
     const descP = document.createElement('p');
-    descP.className = 'quality-desc-editable';
+    descP.className = 'text-muted text-sm text-block';
+    descP.style.textAlign = 'justify';
     descP.textContent = qualite.exemple;
-    
-    // Rendre la description éditable en direct si mode édition activé
-    if (document.body.classList.contains('edit-mode-active')) {
-      descP.contentEditable = true;
-      descP.className += ' editable';
-      descP.addEventListener('blur', () => {
-        qualite.exemple = descP.textContent.trim();
-        saveToLocalStorage();
-      });
-    }
+    qualBlock.appendChild(descP);
 
-    contentDiv.appendChild(descP);
-    itemDiv.appendChild(contentDiv);
-
-    // Contrôles de suppression en mode édition
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'btn-delete-quality btn-danger btn-sm edit-only';
-    deleteBtn.textContent = 'Supprimer cette qualité';
-    deleteBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (confirm(`Voulez-vous vraiment supprimer "${qualite.nom}" ?`)) {
-        currentData.presentation.qualites.splice(index, 1);
-        saveToLocalStorage();
-        renderQualities();
-      }
-    });
-    contentDiv.appendChild(deleteBtn);
-
-    container.appendChild(itemDiv);
+    container.appendChild(qualBlock);
   });
-
-  // Bouton d'ajout de qualité
-  const addBtnWrapper = document.createElement('div');
-  addBtnWrapper.className = 'edit-only mt-md text-right';
-  
-  const addBtn = document.createElement('button');
-  addBtn.className = 'btn btn-secondary btn-sm';
-  addBtn.textContent = '+ Ajouter une qualité';
-  addBtn.addEventListener('click', () => {
-    const qualName = prompt("Entrez le nom de la qualité :");
-    if (qualName && qualName.trim() !== '') {
-      const qualEx = prompt("Décrivez un exemple concret qui illustre cette qualité :");
-      currentData.presentation.qualites.push({
-        nom: qualName.trim(),
-        exemple: qualEx ? qualEx.trim() : "Exemple à remplir..."
-      });
-      saveToLocalStorage();
-      renderQualities();
-    }
-  });
-
-  addBtnWrapper.appendChild(addBtn);
-  container.appendChild(addBtnWrapper);
 }
+
 
 // 3. Gestion des onglets SAÉ (S3 vs S4)
 let activeSAE = 'S3';
@@ -284,9 +197,17 @@ function renderActiveSAE() {
   // Construction dynamique du HTML de la SAE active
   container.innerHTML = `
     <div class="card glass-card">
-      <div class="sae-card-header">
-        <span class="sae-badge">${project.semestre}</span>
-        <h3 id="sae-nom-display" class="sae-title editable-sae" data-field="nom">${project.nom}</h3>
+      <div class="sae-card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span class="sae-badge">${project.semestre}</span>
+          <h3 id="sae-nom-display" class="sae-title editable-sae" data-field="nom" style="margin-bottom: 0;">${project.nom}</h3>
+        </div>
+        ${project.githubUrl ? `
+        <a href="${project.githubUrl}" target="_blank" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          Dépôt GitHub
+        </a>
+        ` : ''}
       </div>
       
       <h4 class="mt-lg">Objectif(s) du projet :</h4>
@@ -334,6 +255,11 @@ function renderActiveSAE() {
           <p id="sae-ameliorations-display" class="editable-sae text-block text-sm" data-field="pistesAmelioration">${project.pistesAmelioration}</p>
         </div>
       </div>
+      ${project.imageUrl ? `
+      <div class="sae-image-container mt-lg text-center" style="margin-top: 1.5rem; text-align: center;">
+        <img src="${project.imageUrl}" alt="Capture d'écran du projet" style="max-width: 60%; height: auto; border-radius: 8px; border: 1px solid var(--divider); display: inline-block;">
+      </div>
+      ` : ''}
     </div>
   `;
 
